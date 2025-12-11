@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor List - SMCH Blood Donation</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{line-height:1.6;background:#f8f8f8;color:#333;}
+header{background:#c62828;color:#fff;padding:10px 20px;}
+header nav{display:flex;justify-content:space-between;align-items:center;}
+header nav ul{list-style:none;display:flex;}
+header nav ul li{margin-left:20px;}
+header nav ul li a{color:white;text-decoration:none;}
+.donor-list{padding:20px;text-align:center;}
+.donor-list table{width:100%;border-collapse:collapse;margin-top:20px;}
+.donor-list table, th, td{border:1px solid #b71c1c;}
+th, td{padding:10px;text-align:center;}
+footer{text-align:center;padding:10px;background-color:#c62828;color:#fff;margin-top:20px;}
+@media(max-width:768px){header nav ul{flex-direction:column;}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">SMCH Blood Donation</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="donors.html">Donor List</a></li>
+<li><a href="about.html">About Us</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="donor-list">
+<h1>Our Donors</h1>
+<table id="donorTable">
+<thead>
+<tr><th>Name</th><th>Batch & Session</th><th>Phone</th><th>Blood Group</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+</section>
+
+<footer>
+<p>&copy; 2025 SMCH Blood Donation Club</p>
+<p>Contact: <a href="mailto:smchblooddonation@gmail.com">smchblooddonation@gmail.com</a></p>
+</footer>
+
+<script>
+// Google Sheet CSV URL
+const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQiudUKQgTy1l965bXYY0QV_hbUknn4i6qYXvBOFe51t2ZzbBCSKPSHZLhEzkV2_swjTgnZMxx6N_Zk/pub?output=csv';
+
+fetch(sheetURL)
+.then(res => res.text())
+.then(data => {
+  const rows = data.split('\n').slice(1); // skip header
+  const table = document.getElementById('donorTable').getElementsByTagName('tbody')[0];
+  rows.forEach(row => {
+      if(!row.trim()) return;
+      const cols = row.split(',');
+      const tr = table.insertRow();
+      tr.insertCell(0).innerText = cols[0]; // Name
+      tr.insertCell(1).innerText = cols[1]; // Batch & Session
+      tr.insertCell(2).innerText = cols[2]; // Phone
+      tr.insertCell(3).innerText = cols[3]; // Blood Group
+  });
+});
+</script>
+</body>
+</html>
