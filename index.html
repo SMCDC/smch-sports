@@ -3,51 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMCH Blood Donation Club</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{line-height:1.6;background:#f8f8f8;color:#333;}
-header{background:#c62828;color:#fff;padding:10px 20px;}
-header nav{display:flex;justify-content:space-between;align-items:center;}
-header nav ul{list-style:none;display:flex;}
-header nav ul li{margin-left:20px;}
-header nav ul li a{color:white;text-decoration:none;}
-.hero{text-align:center;padding:50px 20px;background:#ffebee;}
-.hero h1{font-size:2.5rem;color:#b71c1c;}
-.hero .btn{display:inline-block;margin-top:20px;background:#b71c1c;color:#fff;padding:10px 20px;text-decoration:none;border-radius:5px;}
-footer{text-align:center;padding:10px;background:#c62828;color:#fff;margin-top:20px;}
-iframe{width:100%;max-width:600px;height:500px;border:none;margin:20px auto;display:block;}
-@media(max-width:768px){header nav ul{flex-direction:column;}.hero h1{font-size:2rem;}}
-</style>
+<title>SMCH Sports Society - Home</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-<nav>
-<div class="logo">SMCH Blood Donation</div>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="donors.html">Donor List</a></li>
-<li><a href="about.html">About Us</a></li>
-</ul>
-</nav>
+
+<header class="main-header">
+  <div class="container nav-wrapper">
+    <a href="index.html" class="logo">SMCH SPORTS SOCIETY</a>
+
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="annual_sports_week.html" class="nav-link">Annual Sports Week</a></li>
+        <li><a href="notice.html" class="nav-link">Notice Board</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="https://www.facebook.com/share/17xio2uj47/" target="_blank" rel="noopener noreferrer" class="nav-link special-link">Facebook</a></li>
+      </ul>
+    </nav>
+    
+    <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+  </div>
 </header>
 
-<section class="hero">
-<h1>Donate Blood, Save Lives</h1>
-<p>Join SMCH Blood Donation Club and be a hero today!</p>
-<a href="donors.html" class="btn">View Donors</a>
-</section>
+<main>
+  <div class="hero">
+    <div class="container" style="max-width: 700px;">
+      <h2>Passion Meets Performance</h2>
+      <p>Official Sports Platform of Southern Medical College & Hospital. Fostering fitness, teamwork, and competitive spirit.</p>
+      <button onclick="scrollToActivities()">Explore Activities</button>
+    </div>
+  </div>
 
-<section class="form-section">
-<h2 style="text-align:center;margin-top:30px;">Register as Donor</h2>
-<!-- Replace the src URL with your Google Form embed link -->
-<iframe src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"></iframe>
-</section>
+  <section id="activities">
+    <div class="container">
+      <h3 class="section-title">Our Key Activities</h3>
+      <div class="cards">
+        <article class="card">
+          <h4>🏏 Cricket Tournaments</h4>
+          <p>Organizing short pitch and thrilling day-night tournaments.</p>
+        </article>
+        <article class="card">
+          <h4>⚽ Football Events</h4>
+          <p>Inter-batch and inter-college football leagues and matches.</p>
+        </article>
+        <article class="card">
+          <h4>🎮 eSports & Gaming</h4>
+          <p>Competitive eFootball and gaming tournaments for digital athletes.</p>
+        </article>
+        <article class="card">
+          <h4>🏆 Annual Sports Meet</h4>
+          <p>The main event celebrating sportsmanship and college unity.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer>
-<p>&copy; 2025 SMCH Blood Donation Club</p>
-<p>Contact: <a href="mailto:smchblooddonation@gmail.com">smchblooddonation@gmail.com</a></p>
+  <div class="container">
+    <p>© 2025 SMCH Sports Society. All Rights Reserved.</p>
+    <p>A part of Southern Medical College & Hospital</p>
+  </div>
 </footer>
+
+<script src="script.js"></script>
+<script>
+function scrollToActivities(){
+  document.getElementById("activities").scrollIntoView({behavior:"smooth"});
+}
+</script>
+
 </body>
 </html>
 
