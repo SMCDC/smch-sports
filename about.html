@@ -3,41 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us - SMCH Blood Donation</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{line-height:1.6;background:#f8f8f8;color:#333;}
-header{background:#c62828;color:#fff;padding:10px 20px;}
-header nav{display:flex;justify-content:space-between;align-items:center;}
-header nav ul{list-style:none;display:flex;}
-header nav ul li{margin-left:20px;}
-header nav ul li a{color:white;text-decoration:none;}
-.about{padding:50px 20px;max-width:800px;margin:auto;text-align:center;}
-.about h1{font-size:2rem;margin-bottom:20px;color:#b71c1c;}
-footer{text-align:center;padding:10px;background-color:#c62828;color:#fff;margin-top:20px;}
-@media(max-width:768px){header nav ul{flex-direction:column;}.about h1{font-size:1.8rem;}}
-</style>
+<title>SMCH - About Us</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-<nav>
-<div class="logo">SMCH Blood Donation</div>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="donors.html">Donor List</a></li>
-<li><a href="about.html">About Us</a></li>
-</ul>
-</nav>
+
+<header class="main-header">
+  <div class="container nav-wrapper">
+    <a href="index.html" class="logo">SMCH SPORTS SOCIETY</a>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="annual_sports_week.html" class="nav-link">Annual Sports Week</a></li>
+        <li><a href="notice.html" class="nav-link">Notice Board</a></li>
+        <li><a href="about.html" class="nav-link active">About Us</a></li>
+        <li><a href="https://www.facebook.com/share/17xio2uj47/" target="_blank" rel="noopener noreferrer" class="nav-link special-link">Facebook</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+  </div>
 </header>
 
-<section class="about">
-<h1>About SMCH Blood Donation Club</h1>
-<p>Our mission is to create a healthy community by encouraging voluntary blood donation. We organize regular blood donation camps and maintain a database of committed donors.</p>
-<p>Contact: <a href="mailto:smchblooddonation@gmail.com">smchblooddonation@gmail.com</a></p>
-</section>
+<main>
+  <div class="page-hero">
+    <div class="container">
+      <h2>Our Mission & Vision</h2>
+      <p style="color:rgba(255,255,255,0.8);">Fostering a culture of health, discipline, and competitive excellence.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container" style="max-width: 800px;">
+      <h3 class="section-title">The SMCH Sports Society</h3>
+      
+      <div class="content-box">
+        <h4>Our Foundation</h4>
+        <p>The SMCH Sports Society was founded with the core objective of integrating physical activity and competitive sports into the rigorous academic life of medical students. We believe that a balanced approach, encompassing mental and physical well-being, is crucial for developing future healthcare professionals.</p>
+      </div>
+
+      <div class="content-box">
+        <h4>Our Core Values</h4>
+        <ul>
+            <li style="margin-bottom: 10px;"><strong>Teamwork:</strong> Building synergy, respect, and communication skills essential for both the field and the operating room.</li>
+            <li style="margin-bottom: 10px;"><strong>Leadership:</strong> Providing opportunities for students to manage, organize, and captain teams and events.</li>
+            <li style="margin-bottom: 10px;"><strong>Discipline:</strong> Instilling the importance of commitment, adherence to rules, and dedication to personal fitness goals.</li>
+            <li><strong>Sportsmanship:</strong> Promoting fair play and mutual respect among competitors, win or lose.</li>
+        </ul>
+      </div>
+
+      <div class="content-box">
+        <h4>Get Involved</h4>
+        <p>We welcome all students, regardless of skill level, to join our events. Whether you are looking for serious competition or just a way to stay active, the SMCH Sports Society has a place for you. Follow our official Facebook page for practice timings and upcoming event registrations.</p>
+      </div>
+
+    </div>
+  </section>
+</main>
 
 <footer>
-<p>&copy; 2025 SMCH Blood Donation Club</p>
+  <div class="container">
+    <p>© 2025 SMCH Sports Society. All Rights Reserved.</p>
+    <p>A part of Southern Medical College & Hospital</p>
+  </div>
 </footer>
+
+<script src="script.js"></script>
 </body>
 </html>
+
