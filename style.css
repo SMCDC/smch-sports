@@ -1,0 +1,309 @@
+:root{
+  --primary: #0a3d62; /* Deep Blue */
+  --secondary: #fbc531; /* Golden Yellow Accent */
+  --text: #333;
+  --light: #fff; /* Pure White background */
+  --light-gray: #f8f8f8; /* Section background */
+  --border: #e0e0e0;
+  --radius-sm: 6px;
+  --radius-lg: 12px; /* Larger radius for major elements */
+  --shadow: 0 2px 8px rgba(0,0,0,0.08); /* Subtle shadow for depth */
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body{
+  background:var(--light);
+  color:var(--text);
+  line-height: 1.6;
+}
+
+/* Base Layout */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Header & Navigation (Responsive NAV START) --- */
+header.main-header{ /* Renamed to main-header for clarity */
+  background:var(--primary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 15px 0;
+}
+
+.nav-wrapper{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{ /* Renamed H1 to logo class for consistency */
+  color:var(--light);
+  font-size:24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  z-index: 1001; /* Ensure logo is above the mobile menu */
+}
+
+/* Desktop Navigation Links */
+.main-nav ul {
+  list-style: none;
+  display: flex; /* Horizontal layout for desktop */
+  gap: 15px;
+}
+.main-nav ul li {
+    display: inline;
+}
+
+.nav-link{
+  color:var(--light);
+  text-decoration:none;
+  font-weight:500;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.special-link {
+  background-color: var(--secondary);
+  color: var(--primary);
+  font-weight: 600;
+  padding: 8px 15px;
+}
+.special-link:hover {
+    background-color: #ffda79;
+}
+
+/* Hamburger Toggle (Hidden by default on Desktop) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+/* Hamburger Icon Styling */
+.hamburger, .hamburger::before, .hamburger::after {
+    display: block;
+    content: '';
+    width: 25px;
+    height: 3px;
+    background: var(--light);
+    border-radius: 2px;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+.hamburger::before { transform: translateY(-8px); }
+.hamburger::after { transform: translateY(5px); }
+
+/* Transform Hamburger to X when open */
+.menu-toggle[aria-expanded="true"] .hamburger {
+    background: transparent;
+}
+.menu-toggle[aria-expanded="true"] .hamburger::before {
+    transform: translateY(0) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] .hamburger::after {
+    transform: translateY(-3px) rotate(-45deg);
+}
+
+/* --- Mobile Layout (Media Query) --- */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    position: fixed; /* Overlay the screen */
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    z-index: 1000;
+    
+    /* Initially hide the menu off-screen */
+    transform: translateX(100%); 
+    transition: transform 0.4s ease-in-out; 
+  }
+
+  .main-nav.open {
+    transform: translateX(0);
+  }
+  
+  /* Stack links vertically */
+  .main-nav ul {
+    flex-direction: column;
+    padding: 100px 30px 30px; 
+    text-align: center;
+    gap: 0;
+  }
+
+  .main-nav ul li {
+    margin-bottom: 25px;
+  }
+
+  .nav-link {
+    display: block;
+    font-size: 1.5em; /* Larger tap target */
+    padding: 15px 0;
+  }
+}
+/* --- Header & Navigation (Responsive NAV END) --- */
+
+
+/* --- General Content Styling --- */
+section{
+  padding: 80px 0;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:50px;
+  font-size:32px;
+  color:var(--primary);
+  font-weight: 700;
+}
+
+/* --- Hero Section (Homepage) --- */
+.hero{
+  height: 50vh; 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background-color: var(--light-gray);
+}
+
+.hero h2{
+  color:var(--primary);
+  font-size:48px;
+  margin-bottom: 10px;
+}
+
+.hero p{
+  color:var(--text);
+  margin-bottom:30px;
+  font-size:18px;
+}
+
+.hero button{
+  padding:12px 35px;
+  background:var(--secondary);
+  color: var(--primary);
+  border:none;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.hero button:hover {
+  background-color: #ffda79;
+}
+
+/* --- Cards (Activities) --- */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:var(--light);
+  padding:25px;
+  border-radius: var(--radius-lg); /* Rounded Corners */
+  box-shadow: var(--shadow);
+  text-align:center;
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.card h4{
+  margin-bottom:10px;
+  color:var(--primary);
+  font-size: 20px;
+}
+
+/* --- General Content Page Layout (for About, Notice, Sports Week) --- */
+.page-hero {
+    background-color: var(--primary);
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+}
+
+.page-hero h2 {
+    color: var(--light);
+    font-size: 40px;
+}
+
+.content-box {
+    background: var(--light);
+    padding: 30px;
+    border-radius: var(--radius-lg); /* Rounded Corners */
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+/* --- Notice Specifics --- */
+.notice-list {
+    list-style: none;
+    padding: 0;
+}
+.notice-list li {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--secondary);
+    border-radius: var(--radius-sm);
+    background-color: #fcfcfc;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+.notice-list li strong {
+    color: var(--primary);
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.notice-list li span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* --- Footer --- */
+footer{
+  background:var(--primary);
+  color:var(--light);
+  text-align:center;
+  padding:20px 0;
+  font-size: 14px;
+}
+
+footer a{
+  color:var(--secondary);
+  text-decoration:none;
+  font-weight:600;
+}
