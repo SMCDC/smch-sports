@@ -1,20 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const toggleButton = document.querySelector('.menu-toggle');
-  const mainNav = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
+    const toggle = document.querySelector('.menu-toggle');
 
-  if (toggleButton && mainNav) {
-    toggleButton.addEventListener('click', () => {
-      // Check current state (true or false)
-      const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true' || false;
-      
-      // Toggle aria-expanded attribute
-      toggleButton.setAttribute('aria-expanded', !isExpanded);
-      
-      // Toggle the 'open' class for visual CSS transition
-      mainNav.classList.toggle('open');
-      
-      // Optional: Prevent background scrolling when menu is open
-      document.body.style.overflow = isExpanded ? '' : 'hidden';
-    });
-  }
+    if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+            toggle.setAttribute('aria-expanded', !isExpanded);
+            nav.classList.toggle('open');
+        });
+
+        // Optional: Close menu when a link is clicked (useful on single-page or for mobile UX)
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('open')) {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    nav.classList.remove('open');
+                }
+            });
+        });
+    }
 });
+
+// Function used on index.html to scroll to activities section
+function scrollToActivities(){
+  document.getElementById("activities").scrollIntoView({behavior:"smooth"});
+}
