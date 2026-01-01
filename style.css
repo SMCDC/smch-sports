@@ -31,7 +31,7 @@ body{
 }
 
 /* --- Header & Navigation (Responsive NAV START) --- */
-header.main-header{ /* Renamed to main-header for clarity */
+header.main-header{ 
   background:var(--primary);
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   padding: 15px 0;
@@ -43,20 +43,20 @@ header.main-header{ /* Renamed to main-header for clarity */
   align-items:center;
 }
 
-.logo{ /* Renamed H1 to logo class for consistency */
+.logo{ 
   color:var(--light);
   font-size:24px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
-  z-index: 1001; /* Ensure logo is above the mobile menu */
+  z-index: 1001; 
 }
 
 /* Desktop Navigation Links */
 .main-nav ul {
   list-style: none;
-  display: flex; /* Horizontal layout for desktop */
+  display: flex; 
   gap: 15px;
 }
 .main-nav ul li {
@@ -120,7 +120,7 @@ header.main-header{ /* Renamed to main-header for clarity */
     transform: translateY(-3px) rotate(-45deg);
 }
 
-/* --- Mobile Layout (Media Query) --- */
+/* --- Mobile Layout (Media Query for NAV) --- */
 @media (max-width: 768px) {
 
   .menu-toggle {
@@ -128,15 +128,13 @@ header.main-header{ /* Renamed to main-header for clarity */
   }
 
   .main-nav {
-    position: fixed; /* Overlay the screen */
+    position: fixed; 
     top: 0;
     right: 0;
     width: 100%;
     height: 100%;
     background: var(--primary);
     z-index: 1000;
-    
-    /* Initially hide the menu off-screen */
     transform: translateX(100%); 
     transition: transform 0.4s ease-in-out; 
   }
@@ -159,7 +157,7 @@ header.main-header{ /* Renamed to main-header for clarity */
 
   .nav-link {
     display: block;
-    font-size: 1.5em; /* Larger tap target */
+    font-size: 1.5em; 
     padding: 15px 0;
   }
 }
@@ -210,8 +208,8 @@ section{
   font-weight:700;
   cursor:pointer;
   border-radius: var(--radius-sm);
-  transition: background-color 0.2s;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.2s;
 }
 
 .hero button:hover {
@@ -221,14 +219,15 @@ section{
 /* --- Cards (Activities) --- */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  /* Default for pages like index and annual sports */
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); 
   gap:25px;
 }
 
 .card{
   background:var(--light);
   padding:25px;
-  border-radius: var(--radius-lg); /* Rounded Corners */
+  border-radius: var(--radius-lg); 
   box-shadow: var(--shadow);
   text-align:center;
   border: 1px solid var(--border);
@@ -246,7 +245,7 @@ section{
   font-size: 20px;
 }
 
-/* --- General Content Page Layout (for About, Notice, Sports Week) --- */
+/* --- General Content Page Layout --- */
 .page-hero {
     background-color: var(--primary);
     padding: 60px 0;
@@ -264,7 +263,7 @@ section{
 .content-box {
     background: var(--light);
     padding: 30px;
-    border-radius: var(--radius-lg); /* Rounded Corners */
+    border-radius: var(--radius-lg); 
     box-shadow: var(--shadow);
     margin-bottom: 30px;
 }
@@ -306,4 +305,138 @@ footer a{
   color:var(--secondary);
   text-decoration:none;
   font-weight:600;
+}
+
+/* --- Tournament Bracket Styling (Cardiac Cup - LIGHT TEAL THEME) --- */
+.tournament-bracket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.round {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.matchup {
+    background: var(--light);
+    border: 1px solid #80dede; /* Light Teal Border */
+    border-radius: var(--radius-sm);
+    padding: 10px 15px;
+    margin: 10px 10px;
+    text-align: left;
+    min-width: 220px;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.matchup strong {
+    font-size: 1.1em;
+    color: #4CAF50; /* Green text for emphasis */
+}
+
+/* Winner styling changed to light coral background */
+.matchup .winner {
+    background: #ffe6e6; /* Very Light Coral Background */
+    border-left: 3px solid #FF8A80; /* Coral Red Line */
+    padding-left: 10px;
+    font-weight: 600;
+}
+
+/* Connectors (CSS lines using pseudo-elements) - Light Teal color */
+.matchup:nth-child(odd)::after,
+.matchup:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 50%;
+    border: 2px solid #80dede; /* Light Teal Line */
+}
+
+/* Semi-Final Connectors */
+.round.semi-finals .matchup:nth-child(odd)::after {
+    top: 50%;
+    right: -20px;
+    border-top-right-radius: 10px;
+    border-bottom: none;
+    border-left: none;
+    height: 100%;
+}
+.round.semi-finals .matchup:nth-child(even)::before {
+    top: -50%;
+    right: -20px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+    border-left: none;
+    height: 100%;
+}
+
+/* Final Matchup (Center alignment) - Light Teal color */
+.round.final {
+    margin-top: 50px;
+    position: relative;
+}
+.round.final::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    top: -20px;
+    left: calc(50% - 20px);
+    background: #80dede; /* Light Teal Line */
+}
+
+/* --- Global Responsive Adjustments (Includes Cardiac Cup) --- */
+@media (max-width: 768px) {
+
+    /* Responsive adjustments for awards and knockout cards */
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        gap: 20px;
+    }
+
+    /* Force three-column award section to single column */
+    .cards[style*="grid-template-columns: 1fr 1fr 1fr"] {
+        grid-template-columns: 1fr !important; 
+    }
+
+    /* Group Stage Tables Mobile Stacking (Tables will stack vertically) */
+    div[style*="display: flex; justify-content: space-around;"] {
+        flex-direction: column;
+        gap: 20px !important;
+    }
+    
+    .content-box[style*="min-width: 45%"] {
+        min-width: 100% !important;
+    }
+    
+    table {
+        font-size: 14px;
+        display: block; 
+        overflow-x: auto; 
+    }
+
+    /* Bracket Mobile Stacking */
+    .round {
+        flex-direction: column;
+        width: 100%;
+    }
+    .matchup {
+        width: 90%;
+        margin: 10px 0;
+    }
+    
+    /* Hide all bracket connectors on mobile */
+    .matchup::after, .matchup::before {
+        content: none !important;
+    }
+    .round.final::before {
+        content: none !important;
+    }
 }
