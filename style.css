@@ -1,13 +1,13 @@
 :root{
-  --primary: #0a3d62;
-  --secondary: #fbc531;
+  --primary: #0a3d62; /* Deep Blue */
+  --secondary: #fbc531; /* Golden Yellow Accent */
   --text: #333;
-  --light: #fff;
-  --light-gray: #f8f8f8;
+  --light: #fff; /* Pure White background */
+  --light-gray: #f8f8f8; /* Section background */
   --border: #e0e0e0;
   --radius-sm: 6px;
-  --radius-lg: 12px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --radius-lg: 12px; /* Larger radius for major elements */
+  --shadow: 0 2px 8px rgba(0,0,0,0.08); /* Subtle shadow for depth */
 }
 
 *{
@@ -23,15 +23,17 @@ body{
   line-height: 1.6;
 }
 
+/* Base Layout */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- Header & Navigation --- */
+/* --- Header & Navigation (Responsive NAV START) --- */
 header.main-header{ 
   background:var(--primary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   padding: 15px 0;
 }
 
@@ -45,13 +47,20 @@ header.main-header{
   color:var(--light);
   font-size:24px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   text-decoration: none;
+  z-index: 1001; 
 }
 
+/* Desktop Navigation Links */
 .main-nav ul {
   list-style: none;
   display: flex; 
   gap: 15px;
+}
+.main-nav ul li {
+    display: inline;
 }
 
 .nav-link{
@@ -60,6 +69,7 @@ header.main-header{
   font-weight:500;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
+  transition: background-color 0.2s;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -71,25 +81,183 @@ header.main-header{
   color: var(--primary);
   font-weight: 600;
   padding: 8px 15px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
+}
+.special-link:hover {
+    background-color: #ffda79;
 }
 
-/* --- Content Styling --- */
-section{ padding: 80px 0; }
+/* Hamburger Toggle (Hidden by default on Desktop) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+/* Hamburger Icon Styling */
+.hamburger, .hamburger::before, .hamburger::after {
+    display: block;
+    content: '';
+    width: 25px;
+    height: 3px;
+    background: var(--light);
+    border-radius: 2px;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+.hamburger::before { transform: translateY(-8px); }
+.hamburger::after { transform: translateY(5px); }
+
+/* Transform Hamburger to X when open */
+.menu-toggle[aria-expanded="true"] .hamburger {
+    background: transparent;
+}
+.menu-toggle[aria-expanded="true"] .hamburger::before {
+    transform: translateY(0) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] .hamburger::after {
+    transform: translateY(-3px) rotate(-45deg);
+}
+
+/* --- Mobile Layout (Media Query for NAV) --- */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    position: fixed; 
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    z-index: 1000;
+    transform: translateX(100%); 
+    transition: transform 0.4s ease-in-out; 
+  }
+
+  .main-nav.open {
+    transform: translateX(0);
+  }
+  
+  /* Stack links vertically */
+  .main-nav ul {
+    flex-direction: column;
+    padding: 100px 30px 30px; 
+    text-align: center;
+    gap: 0;
+  }
+
+  .main-nav ul li {
+    margin-bottom: 25px;
+  }
+
+  .nav-link {
+    display: block;
+    font-size: 1.5em; 
+    padding: 15px 0;
+  }
+}
+/* --- Header & Navigation (Responsive NAV END) --- */
+
+
+/* --- General Content Styling --- */
+section{
+  padding: 80px 0;
+}
 
 .section-title{
   text-align:center;
   margin-bottom:50px;
   font-size:32px;
   color:var(--primary);
+  font-weight: 700;
 }
 
+/* --- Hero Section (Homepage) --- */
+.hero{
+  height: 50vh; 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background-color: var(--light-gray);
+}
+
+.hero h2{
+  color:var(--primary);
+  font-size:48px;
+  margin-bottom: 10px;
+}
+
+.hero p{
+  color:var(--text);
+  margin-bottom:30px;
+  font-size:18px;
+}
+
+.hero button{
+  padding:12px 35px;
+  background:var(--secondary);
+  color: var(--primary);
+  border:none;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.2s;
+}
+
+.hero button:hover {
+  background-color: #ffda79;
+}
+
+/* --- Cards (Activities) --- */
+.cards{
+  display:grid;
+  /* Default for pages like index and annual sports */
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); 
+  gap:25px;
+}
+
+.card{
+  background:var(--light);
+  padding:25px;
+  border-radius: var(--radius-lg); 
+  box-shadow: var(--shadow);
+  text-align:center;
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.card h4{
+  margin-bottom:10px;
+  color:var(--primary);
+  font-size: 20px;
+}
+
+/* --- General Content Page Layout --- */
 .page-hero {
     background-color: var(--primary);
     padding: 60px 0;
     text-align: center;
-    color: white;
+    margin-bottom: 40px;
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+}
+
+.page-hero h2 {
+    color: var(--light);
+    font-size: 40px;
 }
 
 .content-box {
@@ -100,75 +268,175 @@ section{ padding: 80px 0; }
     margin-bottom: 30px;
 }
 
-/* --- Tournament Bracket (Clean - No Lines) --- */
+/* --- Notice Specifics --- */
+.notice-list {
+    list-style: none;
+    padding: 0;
+}
+.notice-list li {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--secondary);
+    border-radius: var(--radius-sm);
+    background-color: #fcfcfc;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+.notice-list li strong {
+    color: var(--primary);
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.notice-list li span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* --- Footer --- */
+footer{
+  background:var(--primary);
+  color:var(--light);
+  text-align:center;
+  padding:20px 0;
+  font-size: 14px;
+}
+
+footer a{
+  color:var(--secondary);
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* --- Tournament Bracket Styling (Cardiac Cup - LIGHT TEAL THEME) --- */
 .tournament-bracket {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .round {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .matchup {
     background: var(--light);
-    border: 1px solid #80dede; 
+    border: 1px solid #80dede; /* Light Teal Border */
     border-radius: var(--radius-sm);
-    padding: 15px 20px;
-    min-width: 240px;
+    padding: 10px 15px;
+    margin: 10px 10px;
+    text-align: left;
+    min-width: 220px;
+    position: relative;
     box-shadow: var(--shadow);
-    text-align: center;
 }
 
+.matchup strong {
+    font-size: 1.1em;
+    color: #4CAF50; /* Green text for emphasis */
+}
+
+/* Winner styling changed to light coral background */
 .matchup .winner {
-    background: #ffe6e6; 
-    border-radius: 4px;
-    margin-top: 5px;
-    padding: 2px 10px;
+    background: #ffe6e6; /* Very Light Coral Background */
+    border-left: 3px solid #FF8A80; /* Coral Red Line */
+    padding-left: 10px;
     font-weight: 600;
-    color: #d32f2f;
 }
 
-.round-label {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: #666;
-    margin-bottom: 10px;
-    display: block;
-    width: 100%;
-    text-align: center;
+/* Connectors (CSS lines using pseudo-elements) - Light Teal color */
+.matchup:nth-child(odd)::after,
+.matchup:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 50%;
+    border: 2px solid #80dede; /* Light Teal Line */
 }
 
-/* --- Groups & Awards --- */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+/* Semi-Final Connectors */
+.round.semi-finals .matchup:nth-child(odd)::after {
+    top: 50%;
+    right: -20px;
+    border-top-right-radius: 10px;
+    border-bottom: none;
+    border-left: none;
+    height: 100%;
+}
+.round.semi-finals .matchup:nth-child(even)::before {
+    top: -50%;
+    right: -20px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+    border-left: none;
+    height: 100%;
 }
 
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
-    text-align: center;
-    box-shadow: var(--shadow);
+/* Final Matchup (Center alignment) - Light Teal color */
+.round.final {
+    margin-top: 50px;
+    position: relative;
+}
+.round.final::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    top: -20px;
+    left: calc(50% - 20px);
+    background: #80dede; /* Light Teal Line */
 }
 
-footer {
-    background: var(--primary);
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
+/* --- Global Responsive Adjustments (Includes Cardiac Cup) --- */
 @media (max-width: 768px) {
-    .main-nav { display: none; } /* Simplified for code block length */
-    .round { flex-direction: column; align-items: center; }
+
+    /* Responsive adjustments for awards and knockout cards */
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        gap: 20px;
+    }
+
+    /* Force three-column award section to single column */
+    .cards[style*="grid-template-columns: 1fr 1fr 1fr"] {
+        grid-template-columns: 1fr !important; 
+    }
+
+    /* Group Stage Tables Mobile Stacking (Tables will stack vertically) */
+    div[style*="display: flex; justify-content: space-around;"] {
+        flex-direction: column;
+        gap: 20px !important;
+    }
+    
+    .content-box[style*="min-width: 45%"] {
+        min-width: 100% !important;
+    }
+    
+    table {
+        font-size: 14px;
+        display: block; 
+        overflow-x: auto; 
+    }
+
+    /* Bracket Mobile Stacking */
+    .round {
+        flex-direction: column;
+        width: 100%;
+    }
+    .matchup {
+        width: 90%;
+        margin: 10px 0;
+    }
+    
+    /* Hide all bracket connectors on mobile */
+    .matchup::after, .matchup::before {
+        content: none !important;
+    }
+    .round.final::before {
+        content: none !important;
+    }
 }
